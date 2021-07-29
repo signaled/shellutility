@@ -84,7 +84,23 @@ function updateExecRight()
 function updatePathEnv()
 {
     local NEWPATH=$1
-    echo $PATH | grep -q $NEWPATH && echo "export PATH=\$PATH:$NEWPATH" >> $HOME/.bashrc
-    source $HOME/.bashrc
+    local Found=false
+    
+    directories=$(echo "$PATH" | tr ':' '\n')
+    for dir in $directories
+    do
+        if [ $dir == $NEWPATH ];then
+            Found=true
+        fi
+    done
+    if [ $Found == false ];then
+        echo "Update ~/.bashrc"
+        echo "export PATH=\$PATH:$NEWPATH" >> $HOME/.bashrc
+        source $HOME/.bashrc
+    fi
+
+    #it is not working on my host
+    #echo $PATH | grep -q $NEWPATH && echo "export PATH=\$PATH:$NEWPATH" >> $HOME/.bashrc
+    #source $HOME/.bashrc
 }
 
