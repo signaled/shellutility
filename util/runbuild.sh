@@ -11,6 +11,8 @@ SCRIPT_NAME="build.sh"
 
 SCRIPT_PATH=""
 
+PARAMETER=$@
+
 function findAndRunScript()
 {
     echo -e $Y"Find Script[$W"$2"$Y] in ["$W$1$Y"]$N"
@@ -29,7 +31,7 @@ function findAndRunScript()
         SCRIPT_PATH=$1/$2
         if [ -e $SCRIPT_PATH ];then
             echo -e $W"Run $C"$SCRIPT_PATH$N
-            sh $SCRIPT_PATH
+            sh $SCRIPT_PATH $PARAMETER
         else
             findAndRunScript "$(dirname $1)" "$2"
         fi
