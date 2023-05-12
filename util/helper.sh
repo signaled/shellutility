@@ -97,6 +97,7 @@ function updatePathEnv()
         echo "Update ~/.bashrc"
         echo "export PATH=\$PATH:$NEWPATH" >> $HOME/.bashrc
         source $HOME/.bashrc
+        echo "!!! run 'source ~/.bashrc'"
     fi
 
     #it is not working on my host
@@ -104,3 +105,11 @@ function updatePathEnv()
     #source $HOME/.bashrc
 }
 
+function installBLDAlias()
+{
+    echo "Update ~/.bashrc"
+    echo "alias bldd='runbuild.sh -m debug'" >> $HOME/.bashrc
+    echo "alias bldr='runbuild.sh -m release'" >> $HOME/.bashrc
+    source $HOME/.bashrc
+    echo "!!! run 'source ~/.bashrc'"
+}

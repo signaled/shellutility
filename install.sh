@@ -24,6 +24,7 @@ fi
 
 copyDirectory $SOURCE_UTILDIR $TARGET_UTILDIR
 updatePathEnv $TARGET_UTILDIR
+installBLDAlias
 
 exit
 
